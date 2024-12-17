@@ -1,0 +1,2 @@
+{"level":20,"time":1734433233213,"pid":71211,"hostname":"Linux-Kevin-Moyse","controller":"CatsController","method":"findAll","action":"GET","msg":"received headers {\"host\":\"localhost:3000\",\"user-agent\":\"curl/8.5.0\",\"accept\":\"*/*\"} {\"host\":\"localhost:3000\",\"user-agent\":\"curl/8.5.0\",\"accept\":\"*/*\"}"}
+{"level":30,"time":1734433233214,"pid":71211,"hostname":"Linux-Kevin-Moyse","controller":"CatsController","method":"findAll","action":"GET"}
