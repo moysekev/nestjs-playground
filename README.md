@@ -50,6 +50,9 @@ $ npm run start:prod
 ```sh
 curl localhost:3000
 curl localhost:3000/cats
+curl -X POST http://localhost:3000/cats \
+     -H "Content-Type: application/json" \
+     -d '{"name": "Tommy", "age": 2, "breed": "Siamese"}'
 ```
 
 Hello World!

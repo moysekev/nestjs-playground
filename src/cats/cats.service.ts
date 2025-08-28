@@ -2,13 +2,32 @@ import { Injectable } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
 import { Cat } from './entities/cat.entity';
+import { LoggerService } from 'src/logger.service';
 
 @Injectable()
 export class CatsService {
   private readonly cats: Cat[] = [];
 
+  constructor(private readonly logger: LoggerService) {}
+
   create(createCatDto: CreateCatDto) {
     this.cats.push(createCatDto);
+    this.logger.logger.debug(
+      {
+        origin: CatsService.name,
+        action: 'create',
+        entity: {
+          type: Cat.name,
+          id: 'a-cat-id',
+          ...createCatDto,
+        },
+        user: {
+          id: 'a-user-id',
+          username: 'username',
+        },
+      },
+      'Cat creation',
+    );
     return `This action adds a new cat ${createCatDto.name}`;
   }
 
@@ -22,6 +41,22 @@ export class CatsService {
   }
 
   update(id: number, updateCatDto: UpdateCatDto) {
+    this.logger.logger.debug(
+      {
+        origin: CatsService.name,
+        action: 'update',
+        entity: {
+          type: Cat.name,
+          id: 'a-cat-id',
+          ...updateCatDto,
+        },
+        user: {
+          id: 'a-user-id',
+          username: 'username',
+        },
+      },
+      'Cat creation',
+    );
     return `This action updates a #${id} cat`;
   }
 

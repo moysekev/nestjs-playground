@@ -24,6 +24,7 @@
     "@nestjs/core": "^10.0.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^10.0.0",
+    "hook0-client": "^1.0.0",
     "pino": "^9.5.0",
     "pino-http": "^10.3.0",
     "reflect-metadata": "^0.2.0",

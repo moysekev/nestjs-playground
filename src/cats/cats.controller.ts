@@ -36,19 +36,18 @@ export class CatsController {
     //this.logger.log('findAll headers', request.headers, headers);
     this.logger.logger.debug(
       {
-        controller: CatsController.name,
-        method: 'findAll',
-        action: 'GET',
+        origin: CatsController.name,
+        action: 'read',
+        user: {
+          id: 'a-user-id',
+          username: 'username',
+        },
+        headers,
       },
-      'received headers %o %o',
-      request.headers,
+      'received headers %o',
+      // request.headers,
       headers,
     );
-    this.logger.logger.info({
-      controller: CatsController.name,
-      method: 'findAll',
-      action: 'GET',
-    });
     return this.catsService.findAll();
   }
 
