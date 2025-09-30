@@ -3,12 +3,16 @@ import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
 import { Cat } from './entities/cat.entity';
 import { LoggerService } from 'src/logger.service';
+import { WebhooksService } from 'src/webhooks.service';
 
 @Injectable()
 export class CatsService {
   private readonly cats: Cat[] = [];
 
-  constructor(private readonly logger: LoggerService) {}
+  constructor(
+    private readonly logger: LoggerService,
+    private readonly eventService: WebhooksService,
+  ) { }
 
   create(createCatDto: CreateCatDto) {
     this.cats.push(createCatDto);
@@ -28,6 +32,16 @@ export class CatsService {
       },
       'Cat creation',
     );
+
+    this.eventService.trackEvent('model.interaction.created', 'customer-01', {
+      id: 'a-user-id',
+      type: 'model.interaction.created',
+      data: {
+        interactionId: 'an-interaction-id',
+        foo: "bar"
+      },
+    });
+
     return `This action adds a new cat ${createCatDto.name}`;
   }
 
