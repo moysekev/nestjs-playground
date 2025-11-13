@@ -5,9 +5,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
 import { LoggerModule } from './logger.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [CqrsModule.forRoot(), CatsModule, LoggerModule],
+  imports: [ConfigModule.forRoot(
+    {
+      isGlobal: true, // ✅ Makes ConfigService available everywhere
+    }
+  ), CqrsModule.forRoot(), CatsModule, LoggerModule],
   controllers: [AppController],
   providers: [AppService],
 })
